@@ -1486,9 +1486,13 @@ $("#fBtn").onclick = () => {
 };
 addEventListener("keydown", e => {
   const t = e.target;
-  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
-  if (["ArrowRight","PageDown"].includes(e.key)) { stepOr(1); e.preventDefault(); }
-  else if (["ArrowLeft","PageUp"].includes(e.key)) { stepOr(-1); e.preventDefault(); }
+  // campos de texto continuam recebendo as teclas normalmente
+  if (t && (t.tagName === "TEXTAREA" || (t.tagName === "INPUT" && !/^(range|checkbox|radio|button)$/.test(t.type)))) return;
+  // passadores de slide usam teclas diferentes: aceitamos todas as comuns
+  const prox = ["ArrowRight","PageDown","ArrowDown"," ","Spacebar","Enter","MediaTrackNext","MediaNextTrack"];
+  const ant = ["ArrowLeft","PageUp","ArrowUp","Backspace","MediaTrackPrevious","MediaPreviousTrack"];
+  if (prox.includes(e.key) || e.keyCode === 34){ if (t && t.blur && t !== document.body) t.blur(); stepOr(1); e.preventDefault(); }
+  else if (ant.includes(e.key) || e.keyCode === 33){ if (t && t.blur && t !== document.body) t.blur(); stepOr(-1); e.preventDefault(); }
   else if (e.key === "Home") go(0);
   else if (e.key === "End") go(slides.length - 1);
   else if (e.key === "n" || e.key === "N") $("#nBtn").click();
