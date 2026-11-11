@@ -47,10 +47,8 @@
     <h1>Sorteio de uma <em>inscrição de corrida</em> 🏃</h1>
     <p class="sub">Apresentação “Bioenergética muscular: 100 m × 10 km”. Cadastre seu nome para participar do sorteio ao vivo.</p>
     <form id="f" autocomplete="on" novalidate>
-      <label for="nome">NOME</label>
-      <input id="nome" name="given-name" autocomplete="given-name" maxlength="40" required placeholder="Seu nome">
-      <label for="sobrenome">SOBRENOME</label>
-      <input id="sobrenome" name="family-name" autocomplete="family-name" maxlength="60" required placeholder="Seu sobrenome">
+      <label for="nome">NOME E SOBRENOME</label>
+      <input id="nome" name="name" autocomplete="name" maxlength="100" required placeholder="Ex.: Maria Silva">
       <button id="b" type="submit">Quero participar</button>
       <div class="msg" id="msg" role="status" aria-live="polite"></div>
     </form>
@@ -73,9 +71,11 @@ try { if (localStorage.getItem("sorteio_ok")) mostraOk(localStorage.getItem("sor
 function mostraOk(nome){ $("form").hidden = true; $("ok").hidden = false; $("okNome").textContent = "Pronto, " + nome + "!"; }
 $("f").addEventListener("submit", async e => {
   e.preventDefault();
-  const nome = limpa($("nome").value), sobrenome = limpa($("sobrenome").value);
+  // um campo só: a primeira palavra vira o nome, o resto vira o sobrenome
+  const completo = limpa($("nome").value), sp = completo.indexOf(" ");
+  const nome = sp > 0 ? completo.slice(0, sp) : completo, sobrenome = sp > 0 ? completo.slice(sp + 1) : "";
   const msg = $("msg"); msg.className = "msg"; msg.textContent = "";
-  if (nome.length < 2 || sobrenome.length < 2){ msg.className = "msg err"; msg.textContent = "Preencha nome e sobrenome."; return; }
+  if (nome.length < 2 || sobrenome.length < 2){ msg.className = "msg err"; msg.textContent = "Digite seu nome e sobrenome (ex.: Maria Silva)."; return; }
   $("b").disabled = true; $("b").textContent = "Enviando…";
   try {
     const r = await fetch(SB_URL + "/rest/v1/sorteio_inscritos", {
