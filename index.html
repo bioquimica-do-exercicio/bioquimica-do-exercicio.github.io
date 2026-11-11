@@ -624,6 +624,23 @@ body.print #s6b .gv{opacity:1;transform:none}
 #s11 .qrBox{background:#fff;border-radius:22px;padding:14px;border:6px solid #1fa6b8;box-shadow:0 12px 30px rgba(31,61,138,.18);width:420px;max-width:100%;margin:0 auto}
 #s11 .qrBox svg{display:block;width:100%;height:auto}
 #s11 .sortR p{margin:14px 0 0;font-size:14px;color:var(--muted);word-break:break-all}
+/* rigor mortis animado */
+#s3 .cRigor{display:flex;align-items:center;gap:22px}
+#s3 .cRigorTxt{flex:1;min-width:0}
+#s3 .rigorAnim{flex:none;width:540px;height:auto;display:block}
+#s3 .rigorAnim text{font-family:Arial,sans-serif}
+#s3 .rgCab{transform-box:fill-box;transform-origin:50% 100%;animation:rgCab 3.2s ease-in-out infinite}
+@keyframes rgCab{0%,30%{transform:translateY(0) rotate(0)}45%,65%{transform:translateY(18px) rotate(-28deg)}85%,100%{transform:translateY(0) rotate(0)}}
+#s3 .rgAtp{animation:rgAtp 3.2s ease-in-out infinite}
+@keyframes rgAtp{0%,12%{transform:translate(0,0);opacity:1}30%{transform:translate(-62px,-14px);opacity:1}45%{transform:translate(-62px,-14px);opacity:0}100%{opacity:0}}
+#s3 .rgSolta{opacity:0;animation:rgSolta 3.2s ease-in-out infinite}
+@keyframes rgSolta{0%,40%{opacity:0}48%,64%{opacity:1}74%,100%{opacity:0}}
+#s3 .rgPresa{transform-box:fill-box;transform-origin:50% 100%;animation:rgPresa 1.6s ease-in-out infinite}
+@keyframes rgPresa{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+#s3 .rgX{animation:rgPisca 1.6s ease-in-out infinite}
+#s3 .rgLock{animation:rgPisca 1.6s ease-in-out infinite}
+@keyframes rgPisca{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){#s3 .rigorAnim *{animation:none!important}}
 </style>
 </head>
 <body>
@@ -695,7 +712,7 @@ body.print #s6b .gv{opacity:1;transform:none}
 <!-- ================= 3 · FUNDAMENTOS ================= -->
 <section class="slide" id="s3" data-part="02" data-pname="Fundamentos">
   <div class="sh"><span class="part"></span><span class="who"></span></div>
-  <div class="row tabrow"><h2 class="ttl">ATP: a moeda energética da célula</h2><div class="seg tabs"><button class="on" data-title="ATP: a moeda energética da célula">1 · ATP</button><button data-title="Actina, miosina e o golpe de força">2 · Contração</button><button data-title="Do comando do cérebro à liberação do cálcio">3 · Comando</button><button data-title="Os três grandes consumidores de ATP">4 · Relaxamento</button></div></div>
+  <div class="row tabrow"><h2 class="ttl">ATP: a moeda energética da célula</h2><div class="seg tabs"><button class="on" data-title="ATP: a moeda energética da célula">1 · ATP</button><button data-title="Do comando do cérebro à liberação do cálcio">2 · Comando</button><button data-title="Actina, miosina e o golpe de força">3 · Contração</button><button data-title="Os três grandes consumidores de ATP">4 · Relaxamento</button></div></div>
   <div class="itab" data-t="1">
     <div class="cgA">
       <div class="box cAtp"><svg id="atpSvg" viewBox="0 0 440 150" role="img" aria-label="Estrutura do ATP: adenina, ribose e três fosfatos">
@@ -729,6 +746,16 @@ body.print #s6b .gv{opacity:1;transform:none}
     </div>
   </div>
   <div class="itab" data-t="2" hidden>
+    <ol class="cFlow">
+      <li><b>Cérebro</b><span>envia o comando</span><em class="cRef">Você</em></li>
+      <li><b>Acetilcolina</b><span>é liberada</span><em class="cRef">Controle remoto</em></li>
+      <li><b>Fibra muscular</b><span>recebe o impulso</span><em class="cRef">Portão</em></li>
+      <li><b>Retículo sarcoplasmático</b><span>libera cálcio</span><em class="cRef">Caixa do motor</em></li>
+      <li><b>Troponina</b><span>recebe o cálcio</span><em class="cRef">Trava</em></li>
+      <li><b>Tropomiosina</b><span>libera a actina</span><em class="cRef">Portão se abrindo</em></li>
+    </ol>
+  </div>
+  <div class="itab" data-t="3" hidden>
     <div class="cgC">
       <div class="box cCb"><svg id="cbSvg" viewBox="0 0 400 190" role="img" aria-label="Ciclo das pontes cruzadas entre actina e miosina">
           <g id="actin"></g>
@@ -747,23 +774,43 @@ body.print #s6b .gv{opacity:1;transform:none}
       </ol>
     </div>
   </div>
-  <div class="itab" data-t="3" hidden>
-    <ol class="cFlow">
-      <li><b>Cérebro</b><span>envia o comando</span><em class="cRef">Você</em></li>
-      <li><b>Acetilcolina</b><span>é liberada</span><em class="cRef">Controle remoto</em></li>
-      <li><b>Fibra muscular</b><span>recebe o impulso</span><em class="cRef">Portão</em></li>
-      <li><b>Retículo sarcoplasmático</b><span>libera cálcio</span><em class="cRef">Caixa do motor</em></li>
-      <li><b>Troponina</b><span>recebe o cálcio</span><em class="cRef">Trava</em></li>
-      <li><b>Tropomiosina</b><span>libera a actina</span><em class="cRef">Portão se abrindo</em></li>
-    </ol>
-  </div>
   <div class="itab" data-t="4" hidden>
     <div class="cg3">
       <div class="box"><h3 class="k-atp">Miosina</h3><p>Produz <b>força</b>.</p></div>
       <div class="box"><h3 class="k-oxi">Bomba SERCA</h3><p>Permite o <b>relaxamento</b>.</p></div>
       <div class="box"><h3 class="k-pcr">Bomba de sódio e potássio</h3><p>Prepara <b>novos estímulos</b>.</p></div>
     </div>
-    <div class="box cRigor"><span class="eyebrow">Rigor mortis</span><p>Sem ATP, a miosina não se solta da actina.</p></div>
+    <div class="box cRigor"><div class="cRigorTxt"><span class="eyebrow">Rigor mortis</span><p>Sem ATP, a miosina não se solta da actina.</p></div><svg class="rigorAnim" viewBox="0 0 600 180" role="img" aria-label="Com ATP a cabeça da miosina se solta da actina; sem ATP ela fica presa">
+  <g transform="translate(0,0)">
+    <rect x="0" y="0" width="292" height="176" rx="14" fill="#ffffff" stroke="#14a094" stroke-width="3"/>
+    <text x="146" y="22" text-anchor="middle" font-size="17" font-weight="700" fill="#14a094">COM ATP</text>
+    <g transform="translate(-0,4)"><circle cx="12" cy="46" r="11" fill="#e8a0a8"/><circle cx="36" cy="46" r="11" fill="#e8a0a8"/><circle cx="60" cy="46" r="11" fill="#e8a0a8"/><circle cx="84" cy="46" r="11" fill="#e8a0a8"/><circle cx="108" cy="46" r="11" fill="#e8a0a8"/><circle cx="132" cy="46" r="11" fill="#e8a0a8"/><circle cx="156" cy="46" r="11" fill="#e8a0a8"/><circle cx="180" cy="46" r="11" fill="#e8a0a8"/><circle cx="204" cy="46" r="11" fill="#e8a0a8"/><circle cx="228" cy="46" r="11" fill="#e8a0a8"/><circle cx="252" cy="46" r="11" fill="#e8a0a8"/></g>
+    <text x="270" y="78" text-anchor="end" font-size="12" fill="#8a4a52">actina</text>
+    <rect x="16" y="140" width="260" height="16" rx="8" fill="#6c7a89"/>
+    <text x="270" y="170" text-anchor="end" font-size="12" fill="#4a5664">miosina</text>
+    <line x1="146" y1="140" x2="146" y2="118" stroke="#6c7a89" stroke-width="8" stroke-linecap="round"/>
+    <g class="rgCab">
+      <ellipse cx="146" cy="88" rx="17" ry="30" fill="#4a5b6e"/>
+    </g>
+    <g class="rgAtp"><rect x="200" y="96" width="46" height="22" rx="11" fill="#f2c230" stroke="#946c00" stroke-width="1.5"/><text x="223" y="112" text-anchor="middle" font-size="13" font-weight="700" fill="#5a4200">ATP</text></g>
+         <text class="rgSolta" x="146" y="132" text-anchor="middle" font-size="13" font-weight="700" fill="#0f8b80">solta ✓</text>
+  </g>
+  <g transform="translate(308,0)">
+    <rect x="0" y="0" width="292" height="176" rx="14" fill="#ffffff" stroke="#d63c58" stroke-width="3"/>
+    <text x="146" y="22" text-anchor="middle" font-size="17" font-weight="700" fill="#d63c58">SEM ATP</text>
+    <g transform="translate(-0,4)"><circle cx="12" cy="46" r="11" fill="#e8a0a8"/><circle cx="36" cy="46" r="11" fill="#e8a0a8"/><circle cx="60" cy="46" r="11" fill="#e8a0a8"/><circle cx="84" cy="46" r="11" fill="#e8a0a8"/><circle cx="108" cy="46" r="11" fill="#e8a0a8"/><circle cx="132" cy="46" r="11" fill="#e8a0a8"/><circle cx="156" cy="46" r="11" fill="#e8a0a8"/><circle cx="180" cy="46" r="11" fill="#e8a0a8"/><circle cx="204" cy="46" r="11" fill="#e8a0a8"/><circle cx="228" cy="46" r="11" fill="#e8a0a8"/><circle cx="252" cy="46" r="11" fill="#e8a0a8"/></g>
+    <text x="270" y="78" text-anchor="end" font-size="12" fill="#8a4a52">actina</text>
+    <rect x="16" y="140" width="260" height="16" rx="8" fill="#6c7a89"/>
+    <text x="270" y="170" text-anchor="end" font-size="12" fill="#4a5664">miosina</text>
+    <line x1="146" y1="140" x2="146" y2="118" stroke="#6c7a89" stroke-width="8" stroke-linecap="round"/>
+    <g class="rgPresa">
+      <ellipse cx="146" cy="88" rx="17" ry="30" fill="#4a5b6e"/>
+    </g>
+    <g opacity=".35"><rect x="200" y="96" width="46" height="22" rx="11" fill="#f2c230"/><text x="223" y="112" text-anchor="middle" font-size="13" font-weight="700" fill="#5a4200">ATP</text></g>
+         <g class="rgX"><line x1="200" y1="94" x2="246" y2="120" stroke="#d63c58" stroke-width="4"/><line x1="246" y1="94" x2="200" y2="120" stroke="#d63c58" stroke-width="4"/></g>
+         <text class="rgLock" x="182" y="80" font-size="24">🔒</text>
+         <text x="146" y="132" text-anchor="middle" font-size="13" font-weight="700" fill="#d63c58">presa = músculo rígido</text>
+  </g></svg></div>
   </div>
   <div class="cite"><b>Fontes:</b> Hargreaves; Spriet (2020) · Nelson; Cox (2019) · trabalho do grupo, seção 4.1</div>
   
@@ -2874,7 +2921,7 @@ const durVal = t => (Math.log(t) - Math.log(5))/(Math.log(3600) - Math.log(5))*1
   });
 }
 const ACTIONS = {
-  s3: [null, {
+  s3: [null, null, {
     reset(){ hooks.s3.ciclo(-1); },
     list: [
       ["ATP solta a miosina", () => hooks.s3.ciclo(0)],
@@ -2882,7 +2929,7 @@ const ACTIONS = {
       ["miosina liga à actina", () => hooks.s3.ciclo(2)],
       ["golpe de força", () => hooks.s3.ciclo(3)],
     ],
-  }, null, null],
+  }, null],
   s4: [{
     reset(){ $$("#s4 .lane").forEach(l => l.classList.remove("on")); },
     list: [
